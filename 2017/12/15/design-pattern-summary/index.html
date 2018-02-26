@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,设计模式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Limynl" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言设计模式是一套被反复使用的、多数人知晓的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。设计模式使代码编制真正工程化，它是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛">
+<meta name="keywords" content="Java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式(一)之概述">
+<meta property="og:url" content="http://limynl.site/2017/12/15/design-pattern-summary/index.html">
+<meta property="og:site_name" content="Limynl">
+<meta property="og:description" content="前言设计模式是一套被反复使用的、多数人知晓的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。设计模式使代码编制真正工程化，它是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/about.jpg?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/commer_vip_customer1.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/commer_vip_customer2.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/dimite1.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/dimite2.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:updated_time" content="2017-12-26T08:23:31.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式(一)之概述">
+<meta name="twitter:description" content="前言设计模式是一套被反复使用的、多数人知晓的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。设计模式使代码编制真正工程化，它是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛">
+<meta name="twitter:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/about.jpg?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://limynl.site/2017/12/15/design-pattern-summary/"/>
+
+
+
+
+
+  <title>设计模式(一)之概述 | Limynl</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1829872393ec857acaeb7f405c493ca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!--动态标题-->
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Limynl</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一枚不断努力的小白</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://limynl.site/2017/12/15/design-pattern-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Limynl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Limynl">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式(一)之概述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T23:03:47+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/about.jpg?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>设计模式是一套被反复使用的、多数人知晓的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。设计模式使代码编制真正工程化，它是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因。<br><a id="more"></a></p>
+<h2 id="设计模式类型"><a href="#设计模式类型" class="headerlink" title="设计模式类型"></a>设计模式类型</h2><h3 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h3><p>这些设计模式提供了一种在创建对象的同时隐藏其创建逻辑的方式，而不是直接使用new运算符直接实例化对应的对象，这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。具体有以下几种：</p>
+<ul>
+<li><a href="http://limynl.site/2017/12/26/design-pattern-factory/">工厂模式</a></li>
+<li>抽象工厂模式</li>
+<li><a href="http://limynl.site/2017/12/15/design-pattern-singleton/">单例模式</a></li>
+<li>建造者模式</li>
+<li>原型模式</li>
+</ul>
+<h3 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h3><p>该类设计模式关注类和对象的组合，是一种使用继承和定义接口以获取新功能的方式。具体有以下几种：：</p>
+<ul>
+<li>适配器模式</li>
+<li>桥接模式</li>
+<li>过滤器模式</li>
+<li>组合模式</li>
+<li>装饰器模式</li>
+<li>外观模式</li>
+<li>享元模式</li>
+<li>代理模式</li>
+</ul>
+<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><p>该类设计模式特别关注对象之间的通信。具体有以下几种：</p>
+<ul>
+<li>责任链模式</li>
+<li>命令模式</li>
+<li>解释器模式</li>
+<li>迭代器模式</li>
+<li>中介者模式</li>
+<li>备忘录模式</li>
+<li>观察者模式</li>
+<li>状态模式</li>
+<li>空对象模式</li>
+<li>策略模式</li>
+<li>模板模式</li>
+<li>访问者模式</li>
+</ul>
+<h2 id="设计六大原则"><a href="#设计六大原则" class="headerlink" title="设计六大原则"></a>设计六大原则</h2><h3 id="1、单一职责原则"><a href="#1、单一职责原则" class="headerlink" title="1、单一职责原则"></a>1、单一职责原则</h3><h4 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h4><p>&emsp;&emsp;就一个类而言，引起他的变化应该仅有一个，即一个类只负责一项职责。</p>
+<h4 id="解读："><a href="#解读：" class="headerlink" title="解读："></a>解读：</h4><p>&emsp;&emsp;这句话的含义就是不要让一个类承担过多的职责，如果一个类承担的职责过多，就等于将这些职责耦合在一起，一个职责的变化可能会引起这个类中其他职责的变化，甚至会削弱或抑制这个类完成其他职责的能力，以致当这个类中的某个职责发生变化时，设计会遭到破坏。<br>&emsp;&emsp;就像之前做Android的时候，在一个Activity中既要关注界面的变化、又要对数据进行处理，以致于如果这个Activity要实现的功能比较复杂的话，那么这个Activity类中的代码是比较臃肿的，导致后期维护时，对于他人来说是比较蛋疼的，修改了一个地方可能会引起其他地方相应作出修改，这样就会导致引起这个Activity变化原因过多。因此也就背离了单一职责原则的含义。</p>
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><p>&emsp;&emsp;1、单一职责原则降低了类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多；<br>&emsp;&emsp;2、它提高类的可读性，提高系统的可维护性；<br>&emsp;&emsp;3、让变更引起的风险降低，变更是必然的，如果单一职责原则遵守好，当修改一个功能时，可以显著降低对其他功能的影响。</p>
+<h3 id="2、里氏替换原则"><a href="#2、里氏替换原则" class="headerlink" title="2、里氏替换原则"></a>2、里氏替换原则</h3><h4 id="含义：-1"><a href="#含义：-1" class="headerlink" title="含义："></a>含义：</h4><p>&emsp;&emsp;所有使用基类的地方必须能透明地使用其子类的对象。</p>
+<h4 id="解读：-1"><a href="#解读：-1" class="headerlink" title="解读："></a>解读：</h4><p>&emsp;&emsp;在软件中将一个基类对象替换成它的子类对象，程序将不会产生任何错误和异常，即使用基类的地方一定能够使用其子类。反过来则不成立，如果一个软件实体使用的是一个子类对象的话，那么它不一定能够使用基类对象。<br>&emsp;&emsp;里氏代换原则是实现开闭原则的重要方式之一，由于使用基类对象的地方都可以使用子类对象，因此在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。<br>&emsp;&emsp;例如在一个邮件系统中，用户分为普通用户可VIP用户，但是这两种类型都具有发邮件的功能，因此相应的类图为：<img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/commer_vip_customer1.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="">但是我们在实现在，无论是普通用户还是VIP用户，发邮件的过程都是相同的，因此两个send方法中的代码将会重复，如果以后还会增加其他类型的用户呢？那么这个系统的代码将会很冗余。因此通过里氏替换原则，可以对其进行如下修改:<img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/commer_vip_customer2.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="">这里增加了一个抽象类，作为所有类型的基类，发送类EmailSender类针对抽象客户类Customer编程，因此我们用基类类型来对对象进行定义，当运行时再确定其子类类型，从而实现用子类对象来代替基类对象。同时如果还需要增加其他类型的话，只需要继承Customer类就行。</p>
+<h4 id="说明：-1"><a href="#说明：-1" class="headerlink" title="说明："></a>说明：</h4><p>&emsp;&emsp;使用里氏替换原则需要注意以下几点：<br>&emsp;&emsp;1、子类的所有非私有方法应该在基类中声明，或子类必须实现父类中声明的方法(<strong><em>子类可以扩展基类的功能，但不能改变基类原有的功能</em></strong>)。即为了保证系统的扩展性，在程序中通常使用基类来进行定义，如果一个方法只存在子类中，在子类中不提供相应的声明，则无法在以父类定义的对象中使用该方法。<br>&emsp;&emsp;2、在运用里氏代换原则时，尽量把父类设计为抽象类或者接口，让子类继承父类或实现父接口，并实现在父类中声明的方法，运行时，子类实例替换父类实例，我们可以很方便地扩展系统的功能，同时无须修改原有子类的代码，增加新的功能可以通过增加一个新的子类来实现。这里也体现了里氏代换原则是开闭原则的具体实现手段之一。<br>&emsp;&emsp;3、Java语言中，在编译阶段，Java编译器会检查一个程序是否符合里氏代换原则，这是一个与实现无关的、纯语法意义上的检查，但Java编译器的检查是有局限的。</p>
+<h3 id="3、依赖倒置原则"><a href="#3、依赖倒置原则" class="headerlink" title="3、依赖倒置原则"></a>3、依赖倒置原则</h3><h4 id="含义：-2"><a href="#含义：-2" class="headerlink" title="含义："></a>含义：</h4><p>&emsp;&emsp;高层模块不应该依赖底层模块，两者都应该依赖其抽象。即：抽象不应该依赖细节，细节应该依赖抽象。</p>
+<h4 id="解读：-2"><a href="#解读：-2" class="headerlink" title="解读："></a>解读：</h4><p>&emsp;&emsp;在Java中，抽象就是指接口或抽象类，两者是不能直接被实例化的，使用接口或者抽象类的目的是制定好规范和契约，而不去涉及任何具体的操作，把展现细节的任务交给他们的实现类去完成，而细节就是实现类，实现接口或继承抽象类而产生的就是细节。而高层模块就是调用者，底层模块就是具体实现类。<br>&emsp;&emsp;依赖倒置原则在Java中的表现就是：模块间通过抽象发生，实现类之间不发生直接依赖关系，其依赖关系是通过接口或者抽象类产生的。如果类与类直接依赖细节，那么就会直接耦合，那么当修改时，就会同时修改依赖者代码，这样限制了可扩展性。<br>&emsp;&emsp;例如下面这个例子：一个学生应该具有学习多门课程的能力。比如他喜欢学习语文。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class StudyChinese&#123;</span><br><span class="line">    public String <span class="function"><span class="title">ability</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"我能学习语文!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Student&#123;</span><br><span class="line">    public void study(StudyChinese chinese)&#123;</span><br><span class="line">        System.out.println(chinese.ability());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Client&#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Student student = new Student();</span><br><span class="line">        student.study(new StudyChinese());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此时可以看出该学生能够学语文，但是还应该能够学习数学、英语等，要实现这些那么我们应该将Student不断进行修改，显然这样操作的话，各个类之间的耦合度就太高了。因此我们可以引入一个接口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IStudy&#123;</span><br><span class="line">    public String ability();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样该学生就不止会学语文了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class StudyChinese impliments IStudy&#123;</span><br><span class="line">    public String <span class="function"><span class="title">ability</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"我能学习语文!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class StudyMath impliments IStudy&#123;</span><br><span class="line">    public String <span class="function"><span class="title">ability</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"我能学习数学!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Student&#123;</span><br><span class="line">    public void study(IStudy study)&#123;</span><br><span class="line">        System.out.println(study.ability());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Client&#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Student student = new Student();</span><br><span class="line">        student.study(new StudyChinese());</span><br><span class="line">        student.study(new StudyMath());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此现在只需要修改Client，就能扩展该学生的知识，学习相应的课程。从而就不用再去修改Student类了。</p>
+<h4 id="说明：-2"><a href="#说明：-2" class="headerlink" title="说明："></a>说明：</h4><p>&emsp;&emsp;1、底层模块尽量都要有接口或抽象类；<br>&emsp;&emsp;2、形参类型尽量为接口或抽象类类型，即遵循里氏替换原则。<br>&emsp;&emsp;3、传递依赖关系有三种方式，分别为：接口传递、构造方法传递、setter方法传递，以上的例子使用的是接口传递。<br>&emsp;&emsp;4、通过上面的例子可以看出依赖倒置原则给并行开发带来了极大的便利，先前Student类和StudyChinese类耦合在一起，就是说Student类必须等StudyChinese类完成后才能编码；而优化后的程序可以看出St类与StudyChinese、StudyMath类没有任何直接关系，因此将提高开发效率。</p>
+<h3 id="4、接口隔离原则"><a href="#4、接口隔离原则" class="headerlink" title="4、接口隔离原则"></a>4、接口隔离原则</h3><h4 id="含义：-3"><a href="#含义：-3" class="headerlink" title="含义："></a>含义：</h4><p>&emsp;&emsp;客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。</p>
+<h4 id="解读：-3"><a href="#解读：-3" class="headerlink" title="解读："></a>解读：</h4><p>&emsp;&emsp;建立接口时，应该建立单一接口，不要建立庞大臃肿的接口，尽量细化接口，接口中的方法尽量少。也就是说，我们要为各个类建立专用的接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。<br>&emsp;&emsp;就如下面的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">interface I&#123;</span><br><span class="line">    public void method1();  </span><br><span class="line">    public void method2();  </span><br><span class="line">    public void method3();  </span><br><span class="line">    public void method4();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//对于类A只需要method1、m但因为实现接口I，因此也要实现不需要的method3、method4，即使这两个方法的方法体为空。</span><br><span class="line">public class A impliments I&#123;</span><br><span class="line">    public void <span class="function"><span class="title">method1</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法一"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method2</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法二"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method3</span></span>()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method4</span></span>()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//类B与A相识，为了实现接口I也要实现不需要的method1、method2</span><br><span class="line">public class B impliments I&#123;</span><br><span class="line">    public void <span class="function"><span class="title">method1</span></span>()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method2</span></span>()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method3</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法三"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method4</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法四"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此从上面可以看到，如果接口过于臃肿，只要接口中出现的方法，不管对依赖于它的类有没有用，实现类中都必须去实现这些方法。因此我们可以对接口进行拆分：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">interface I1&#123;</span><br><span class="line">    public void method1();  </span><br><span class="line">    public void method2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface I2&#123;</span><br><span class="line">    public void method3();  </span><br><span class="line">    public void method4();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class A impliments I1&#123;</span><br><span class="line">    public void <span class="function"><span class="title">method1</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法一"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method2</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法二"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class B impliments I2&#123;</span><br><span class="line">    public void <span class="function"><span class="title">method3</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法三"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void <span class="function"><span class="title">method4</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"实现方法四"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此在程序设计中，依赖几个专用的接口要比依赖一个综合的接口更灵活。接口是设计时对外部设定的“契约”，通过分散定义多个接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。</p>
+<h4 id="说明：-3"><a href="#说明：-3" class="headerlink" title="说明："></a>说明：</h4><p>&emsp;&emsp;1、接口应该尽量小，但是要有限度，因为接口过小的话，就会造成接口数量过多，使设计复杂化。因此要掌握好这个“度”应该在平时对相应问题进行仔细思考。<br>&emsp;&emsp;2、要建立最小的依赖关系，应该为依赖接口的类定制服务，即之暴露给调用的类它需要的方法，将不需要的方法隐藏起来。<br>&emsp;&emsp;3、注意与单一职责原则相区别：<br>&emsp;&emsp;&emsp;(1)、单一职责原则原注重的是职责，而接口隔离原则注重对接口依赖的隔离；<br>&emsp;&emsp;&emsp;(2)、单一职责原则主要是约束类，其次才是接口和方法，它针对的是程序中的实现和细节；而接口隔离原则主要约束接口接口，主要针对抽象，针对程序整体框架的构建。</p>
+<h3 id="5、迪米特法则"><a href="#5、迪米特法则" class="headerlink" title="5、迪米特法则"></a>5、迪米特法则</h3><h4 id="含义：-4"><a href="#含义：-4" class="headerlink" title="含义："></a>含义：</h4><p>&emsp;&emsp;一个软件实体应当尽可能少的与其他实体发生相互作用，又叫做最少知道原则。</p>
+<h4 id="解读：-4"><a href="#解读：-4" class="headerlink" title="解读："></a>解读：</h4><p>&emsp;&emsp;通俗的来讲，就是一个类对自己依赖的类知道的越少越好。也就是说，对于被依赖的类来说，无论逻辑多么复杂，都尽量地的将逻辑封装在类的内部，对外除了提供的public方法，不对外泄漏任何信息。<br>&emsp;&emsp;迪米特法则要求我们在设计系统时，应该尽量减少对象之间的交互，如果两个对象之间不必彼此直接通信，那么这两个对象就不应当发生任何直接的相互作用，如果其中的一个对象需要调用另一个对象的某一个方法的话，可以通过第三者转发这个调用。简言之，就是通过引入一个合理的第三者来降低现有对象之间的耦合度。<br>&emsp;&emsp;例如下面的例子：当ClassBase有动作时时，和它有关联的类ClassB、ClassC、ClassD等都将发生改变。<br><img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/dimite1.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""><br>因此从上面可以看见由于类之间的交互关系复杂，导致在该系统中增加新的对象时需要修改与之交互的其它类的源代码，系统扩展性较差，也不便于增加和删除新对象。<br>&emsp;&emsp;下面将引入一个专门用于控制对象间交互的中介类(Agent)来降低各对象之间的耦合度。引入中间类之后，相关对象之间不再发生直接引用，而是将请求先转发给中间类，再由中间类来完成对其它对象的调用。当需要增加或删除新的对象时，只需修改中间类即可，无须修改新增对象或已有对象的源代码。<img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/dimite2.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""></p>
+<h4 id="说明：-4"><a href="#说明：-4" class="headerlink" title="说明："></a>说明：</h4><p>&emsp;&emsp;1、在类的划分上，应当尽量创建松耦合的类，类之间的耦合度越低，就越有利于复用，一个处在松耦合中的类一旦被修改，不会对关联的类造成太大波及；<br>&emsp;&emsp;2、在类的结构设计上，每一个类都应当尽量降低其成员变量和成员函数的访问权限；<br>&emsp;&emsp;3、在类的设计上，只要有可能，一个类型应当设计成不变类；<br>&emsp;&emsp;4、在对其他类的引用上，一个对象对其他对象的引用应当降到最低。<br>&emsp;&emsp;5、迪米特法则的另外一层含义是：<strong>只与直接的朋友通信</strong>。直接朋友指：<br>&emsp;&emsp; (1)、当前对象本身(this);<br>&emsp;&emsp; (2)、以参量形式传入到当前对象方法中的对象;<br>&emsp;&emsp; (3)、当前对象的实例变量直接引用的对象;<br>&emsp;&emsp; (4)、当前对象的实例变量如果是一个聚集，那么聚集中的元素也都是朋友;<br>&emsp;&emsp; (5)、当前对象所创建的对象。<br>&emsp;&emsp; 任何一个对象，如果满足上面的条件之一，就是当前对象的“朋友”；否则就是“陌生人”。</p>
+<h3 id="6、开放封闭原则"><a href="#6、开放封闭原则" class="headerlink" title="6、开放封闭原则"></a>6、开放封闭原则</h3><h4 id="含义：-5"><a href="#含义：-5" class="headerlink" title="含义："></a>含义：</h4><p>&emsp;&emsp;多扩展开放、对修改关闭，即类、函数等等应该能够扩展，而不是去修改。</p>
+<h4 id="解读：-5"><a href="#解读：-5" class="headerlink" title="解读："></a>解读：</h4><p>&emsp;&emsp;从上面的含义我们知道该原则有两方面的意思，一个就是对于扩展是开放的，另一个就是对于修改是封闭的。就是说当程序需要进行扩展的时候，不能去修改原有的代码，实现一个热插拔的效果。因为在实际开发中需求的改变在所难免，但是需求一变就把所涉及的类重新改一遍这个显然很头疼，因此我们在设计程序时，要针对需求尽量保证代码的相对稳定。简言之，就是为了使程序的扩展性好，易于维护和升级。<br>&emsp;&emsp;其实从上面的叙述来说，开放封闭有点模糊，尽管知道要扩展开放、对修改关闭，但是如何才能做到呢？其实我们经过前面五大原则可以发现，要实现开放封闭原则，无非就是<strong>用抽象构建框架，用实现扩展细节</strong>，因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节，我们用从抽象派生的实现类来进行扩展，当软件需要发生变化时，我们只需要根据需求重新派生一个实现类来扩展就可以了。</p>
+<h4 id="说明：-5"><a href="#说明：-5" class="headerlink" title="说明："></a>说明：</h4><p>&emsp;&emsp; 1、里氏替换原则开放封闭原则的实现提供保证；<br>&emsp;&emsp; 2、封装变化，是实现开放封闭原则的重要手段，对于经常发生变化的状态一般将其封装为一个抽象，但是拒绝滥用抽象，只将经常变化的部分进行抽象。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于上面的六大原则可概括为：</p>
+<ul>
+<li>单一职责原则: 实现类要职责单一;</li>
+<li>里氏替换原则: 不要破坏继承体系;</li>
+<li>依赖倒置原则: 使用面向接口编程;</li>
+<li>接口隔离原则: 设计接口精简单一;</li>
+<li>迪米特法则:&emsp; 类与类要降低耦合。</li>
+</ul>
+<p>对于这六大原则的使用，我们应该尽量合理地遵守，也不用刻意去遵守，否则将会遵守过渡。对于具体如何使用，就要靠平时的学习积累，以及依照个人经验来定，当然经验的好坏，将决定整个设计的质量。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>提高自己的方法有很多，将自己学过的以这种方式记录下来，希望自己有所收获，同时希望能够帮助需要帮助的人~~~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Limynl 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Limynl 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div>
+	<img src="http://p1syj1ah9.bkt.clouddn.com/limynl/site/post_end.gif"><br />
+
+	<span style="line-height:50px">作者：<a href="http://limynl.site">Limynl</a></span><br />
+	<span style="line-height:50px">出处：<a href="http://limynl.site/2017/12/15/design-pattern-summary/" title="设计模式(一)之概述">http://limynl.site/2017/12/15/design-pattern-summary/</a></span><br />
+	<span style="line-height:50px">分享是快乐的，也见证了个人成长历程，文章大多都是平时学习的总结，基于自身认知不足，错误在所难免，也请大家指正，共同交流学习。</span><br />
+	<span style="line-height:50px">本文版权归作者所有，转载请注明出处，如有问题，请邮件(<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5YmMiJyLiaWUlMuGiog" style="text-decoration:none;">limynl@qq.com</a>)咨询。</span>
+</div>
+<!-- 
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Limynl
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://limynl.site/2017/12/15/design-pattern-summary/" title="设计模式(一)之概述">http://limynl.site/2017/12/15/design-pattern-summary/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+
+
+
+
+-->
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/13/使用Github搭建属于自己的博客By-Hexo/" rel="next" title="使用Github搭建属于自己的博客By Hexo">
+                <i class="fa fa-chevron-left"></i> 使用Github搭建属于自己的博客By Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/15/design-pattern-singleton/" rel="prev" title="设计模式(二)之单例模式">
+                设计模式(二)之单例模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjM2Mi84OTIz"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Limynl" />
+            
+              <p class="site-author-name" itemprop="name">Limynl</p>
+              <p class="site-description motion-element" itemprop="description">耐心 细心 恒心</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/limynl" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:limynl@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="1434117404" target="_blank" title="QQ">
+                    
+                      <i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="lmy08011996" target="_blank" title="Wechat">
+                    
+                      <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+
+
+          
+
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式类型"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7C7B;&#x578B;" class="headerlink" title="&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7C7B;&#x578B;"></a>&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7C7B;&#x578B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建型模式"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;"></a>&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构型模式"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;"></a>&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行为型模式"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;"></a>&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计六大原则"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8BBE;&#x8BA1;&#x516D;&#x5927;&#x539F;&#x5219;" class="headerlink" title="&#x8BBE;&#x8BA1;&#x516D;&#x5927;&#x539F;&#x5219;"></a>&#x8BBE;&#x8BA1;&#x516D;&#x5927;&#x539F;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、单一职责原则"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#1&#x3001;&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;" class="headerlink" title="1&#x3001;&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;"></a>1&#x3001;&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#含义："><span class="nav-number">3.1.1.</span> <span class="nav-text"><a href="#&#x542B;&#x4E49;&#xFF1A;" class="headerlink" title="&#x542B;&#x4E49;&#xFF1A;"></a>&#x542B;&#x4E49;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解读："><span class="nav-number">3.1.2.</span> <span class="nav-text"><a href="#&#x89E3;&#x8BFB;&#xFF1A;" class="headerlink" title="&#x89E3;&#x8BFB;&#xFF1A;"></a>&#x89E3;&#x8BFB;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明："><span class="nav-number">3.1.3.</span> <span class="nav-text"><a href="#&#x8BF4;&#x660E;&#xFF1A;" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、里氏替换原则"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#2&#x3001;&#x91CC;&#x6C0F;&#x66FF;&#x6362;&#x539F;&#x5219;" class="headerlink" title="2&#x3001;&#x91CC;&#x6C0F;&#x66FF;&#x6362;&#x539F;&#x5219;"></a>2&#x3001;&#x91CC;&#x6C0F;&#x66FF;&#x6362;&#x539F;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#含义：-1"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x542B;&#x4E49;&#xFF1A;-1" class="headerlink" title="&#x542B;&#x4E49;&#xFF1A;"></a>&#x542B;&#x4E49;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解读：-1"><span class="nav-number">3.2.2.</span> <span class="nav-text"><a href="#&#x89E3;&#x8BFB;&#xFF1A;-1" class="headerlink" title="&#x89E3;&#x8BFB;&#xFF1A;"></a>&#x89E3;&#x8BFB;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明：-1"><span class="nav-number">3.2.3.</span> <span class="nav-text"><a href="#&#x8BF4;&#x660E;&#xFF1A;-1" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、依赖倒置原则"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#3&#x3001;&#x4F9D;&#x8D56;&#x5012;&#x7F6E;&#x539F;&#x5219;" class="headerlink" title="3&#x3001;&#x4F9D;&#x8D56;&#x5012;&#x7F6E;&#x539F;&#x5219;"></a>3&#x3001;&#x4F9D;&#x8D56;&#x5012;&#x7F6E;&#x539F;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#含义：-2"><span class="nav-number">3.3.1.</span> <span class="nav-text"><a href="#&#x542B;&#x4E49;&#xFF1A;-2" class="headerlink" title="&#x542B;&#x4E49;&#xFF1A;"></a>&#x542B;&#x4E49;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解读：-2"><span class="nav-number">3.3.2.</span> <span class="nav-text"><a href="#&#x89E3;&#x8BFB;&#xFF1A;-2" class="headerlink" title="&#x89E3;&#x8BFB;&#xFF1A;"></a>&#x89E3;&#x8BFB;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明：-2"><span class="nav-number">3.3.3.</span> <span class="nav-text"><a href="#&#x8BF4;&#x660E;&#xFF1A;-2" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、接口隔离原则"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#4&#x3001;&#x63A5;&#x53E3;&#x9694;&#x79BB;&#x539F;&#x5219;" class="headerlink" title="4&#x3001;&#x63A5;&#x53E3;&#x9694;&#x79BB;&#x539F;&#x5219;"></a>4&#x3001;&#x63A5;&#x53E3;&#x9694;&#x79BB;&#x539F;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#含义：-3"><span class="nav-number">3.4.1.</span> <span class="nav-text"><a href="#&#x542B;&#x4E49;&#xFF1A;-3" class="headerlink" title="&#x542B;&#x4E49;&#xFF1A;"></a>&#x542B;&#x4E49;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解读：-3"><span class="nav-number">3.4.2.</span> <span class="nav-text"><a href="#&#x89E3;&#x8BFB;&#xFF1A;-3" class="headerlink" title="&#x89E3;&#x8BFB;&#xFF1A;"></a>&#x89E3;&#x8BFB;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明：-3"><span class="nav-number">3.4.3.</span> <span class="nav-text"><a href="#&#x8BF4;&#x660E;&#xFF1A;-3" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、迪米特法则"><span class="nav-number">3.5.</span> <span class="nav-text"><a href="#5&#x3001;&#x8FEA;&#x7C73;&#x7279;&#x6CD5;&#x5219;" class="headerlink" title="5&#x3001;&#x8FEA;&#x7C73;&#x7279;&#x6CD5;&#x5219;"></a>5&#x3001;&#x8FEA;&#x7C73;&#x7279;&#x6CD5;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#含义：-4"><span class="nav-number">3.5.1.</span> <span class="nav-text"><a href="#&#x542B;&#x4E49;&#xFF1A;-4" class="headerlink" title="&#x542B;&#x4E49;&#xFF1A;"></a>&#x542B;&#x4E49;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解读：-4"><span class="nav-number">3.5.2.</span> <span class="nav-text"><a href="#&#x89E3;&#x8BFB;&#xFF1A;-4" class="headerlink" title="&#x89E3;&#x8BFB;&#xFF1A;"></a>&#x89E3;&#x8BFB;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明：-4"><span class="nav-number">3.5.3.</span> <span class="nav-text"><a href="#&#x8BF4;&#x660E;&#xFF1A;-4" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、开放封闭原则"><span class="nav-number">3.6.</span> <span class="nav-text"><a href="#6&#x3001;&#x5F00;&#x653E;&#x5C01;&#x95ED;&#x539F;&#x5219;" class="headerlink" title="6&#x3001;&#x5F00;&#x653E;&#x5C01;&#x95ED;&#x539F;&#x5219;"></a>6&#x3001;&#x5F00;&#x653E;&#x5C01;&#x95ED;&#x539F;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#含义：-5"><span class="nav-number">3.6.1.</span> <span class="nav-text"><a href="#&#x542B;&#x4E49;&#xFF1A;-5" class="headerlink" title="&#x542B;&#x4E49;&#xFF1A;"></a>&#x542B;&#x4E49;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解读：-5"><span class="nav-number">3.6.2.</span> <span class="nav-text"><a href="#&#x89E3;&#x8BFB;&#xFF1A;-5" class="headerlink" title="&#x89E3;&#x8BFB;&#xFF1A;"></a>&#x89E3;&#x8BFB;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明：-5"><span class="nav-number">3.6.3.</span> <span class="nav-text"><a href="#&#x8BF4;&#x660E;&#xFF1A;-5" class="headerlink" title="&#x8BF4;&#x660E;&#xFF1A;"></a>&#x8BF4;&#x660E;&#xFF1A;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7ED3;&#x8BED;" class="headerlink" title="&#x7ED3;&#x8BED;"></a>&#x7ED3;&#x8BED;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Limynl的技术小屋</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
