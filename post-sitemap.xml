@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://limynl.site/2018/03/30/detailed-explanation-avl/</loc>
+        <lastmod>2018-03-30T10:19:35.388Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://limynl.site/2017/12/31/competition-video/</loc>
         <lastmod>2018-03-15T15:35:42.445Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -49,14 +57,6 @@
     <url>
         <loc>http://limynl.site/2017/12/26/design-pattern-factory/</loc>
         <lastmod>2017-12-26T08:19:47.460Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://limynl.site/2017/12/11/hello-world/</loc>
-        <lastmod>2017-12-13T08:15:59.935Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
