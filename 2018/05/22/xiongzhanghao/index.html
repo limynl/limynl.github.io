@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Java,源码," />
+  <meta name="keywords" content="Github,Hexo," />
 
 
 
@@ -96,23 +96,18 @@
 
 
 
-<meta name="description" content="前言之前了解了String、StringBuilder和StringBuffer之间简单的区别，比如String是不可变的，StringBuilder是可变的，StringBuffer是线程安全的等，但对于它们为什么有这些特性却完全蒙蔽，知其然不知其所以然，因此下面将结合最近掌握的，对它们进行详细总结。">
-<meta name="keywords" content="Java,源码">
+<meta name="description" content="熊掌号的意义百度熊掌号是内容和服务提供者入驻百度生态的实名账号，致力于帮助内容和服务提供者方便、快捷、高效地连接百度用户，并充分利用搜索生态开放的优势，获得流量和沉淀用户，实现自身价值的快速增长。 熊掌号的目的：1、建站开发流程繁杂，推广营销成本高；2、互联网平台分散，站长需要同时维护多个平台，各平台的用户不能互通，运营成本较高；3、传统的搜索仅能获取流量，无法有效留存并运营用户；同时将搜索时代">
+<meta name="keywords" content="Github,Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="String之间的那点儿事">
-<meta property="og:url" content="http://limynl.site/2017/12/24/string-detail-introduce/index.html">
+<meta property="og:title" content="xiongzhanghao">
+<meta property="og:url" content="http://limynl.site/2018/05/22/xiongzhanghao/index.html">
 <meta property="og:site_name" content="Limynl">
-<meta property="og:description" content="前言之前了解了String、StringBuilder和StringBuffer之间简单的区别，比如String是不可变的，StringBuilder是可变的，StringBuffer是线程安全的等，但对于它们为什么有这些特性却完全蒙蔽，知其然不知其所以然，因此下面将结合最近掌握的，对它们进行详细总结。">
+<meta property="og:description" content="熊掌号的意义百度熊掌号是内容和服务提供者入驻百度生态的实名账号，致力于帮助内容和服务提供者方便、快捷、高效地连接百度用户，并充分利用搜索生态开放的优势，获得流量和沉淀用户，实现自身价值的快速增长。 熊掌号的目的：1、建站开发流程繁杂，推广营销成本高；2、互联网平台分散，站长需要同时维护多个平台，各平台的用户不能互通，运营成本较高；3、传统的搜索仅能获取流量，无法有效留存并运营用户；同时将搜索时代">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/string_detail_introduce_background.jpeg?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
-<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/String_relation.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
-<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/sit/String_inner_analysis.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
-<meta property="og:image" content="http://p0w1t27p0.bkt.clouddn.com/String_not_change.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
-<meta property="og:updated_time" content="2017-12-27T01:11:41.976Z">
+<meta property="og:updated_time" content="2018-05-22T13:44:21.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String之间的那点儿事">
-<meta name="twitter:description" content="前言之前了解了String、StringBuilder和StringBuffer之间简单的区别，比如String是不可变的，StringBuilder是可变的，StringBuffer是线程安全的等，但对于它们为什么有这些特性却完全蒙蔽，知其然不知其所以然，因此下面将结合最近掌握的，对它们进行详细总结。">
-<meta name="twitter:image" content="http://p0w1t27p0.bkt.clouddn.com/limynl/site/string_detail_introduce_background.jpeg?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10">
+<meta name="twitter:title" content="xiongzhanghao">
+<meta name="twitter:description" content="熊掌号的意义百度熊掌号是内容和服务提供者入驻百度生态的实名账号，致力于帮助内容和服务提供者方便、快捷、高效地连接百度用户，并充分利用搜索生态开放的优势，获得流量和沉淀用户，实现自身价值的快速增长。 熊掌号的目的：1、建站开发流程繁杂，推广营销成本高；2、互联网平台分散，站长需要同时维护多个平台，各平台的用户不能互通，运营成本较高；3、传统的搜索仅能获取流量，无法有效留存并运营用户；同时将搜索时代">
 
 
 
@@ -142,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://limynl.site/2017/12/24/string-detail-introduce/"/>
+  <link rel="canonical" href="http://limynl.site/2018/05/22/xiongzhanghao/"/>
 
 
 
 
 
-  <title>String之间的那点儿事 | Limynl</title>
+  <title>xiongzhanghao | Limynl</title>
   
 
 
@@ -331,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://limynl.site/2017/12/24/string-detail-introduce/">
+    <link itemprop="mainEntityOfPage" href="http://limynl.site/2018/05/22/xiongzhanghao/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Limynl">
@@ -348,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">String之间的那点儿事</h1>
+          <h1 class="post-title" itemprop="name headline">xiongzhanghao</h1>
         
 
         <div class="post-meta">
@@ -360,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T12:04:07+08:00">
-                2017-12-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T21:41:15+08:00">
+                2018-05-22
               </time>
             
 
@@ -383,8 +378,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
                   </a>
                 </span>
 
@@ -425,64 +420,14 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/string_detail_introduce_background.jpeg?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前了解了String、StringBuilder和StringBuffer之间简单的区别，比如String是不可变的，StringBuilder是可变的，StringBuffer是线程安全的等，但对于它们为什么有这些特性却完全蒙蔽，知其然不知其所以然，因此下面将结合最近掌握的，对它们进行详细总结。<br><a id="more"></a></p>
-<h2 id="三者关系"><a href="#三者关系" class="headerlink" title="三者关系"></a>三者关系</h2><p>为了更好的理解这三者的关系，下面是它们的关系图：<br><img src="http://p0w1t27p0.bkt.clouddn.com/limynl/site/String_relation.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""></p>
-<p>从图中可以看出它们都是从CharSequence (<em>是一个接口，表示char值的一个可读序列，此接口对许多不同种类的char序列提供统一的读写访问</em>)扩展而来，<strong>同时String、StringBuilder和StringBuffer的本质都是通过字符数组实现的。</strong></p>
-<h2 id="String详解"><a href="#String详解" class="headerlink" title="String详解"></a>String详解</h2><h3 id="常见创建方式"><a href="#常见创建方式" class="headerlink" title="常见创建方式"></a>常见创建方式</h3><ul>
-<li>方式一：使用关键字new，如：String s1 = new String(“Hello World”);</li>
-<li>方式二：直接定义，如：String s2 = “Hello World”;</li>
-</ul>
-<blockquote>
-<p>当然通过构造函数创建一个String还有很多其他方式，这里就以参数为String的为例</p>
-</blockquote>
-<p>下面通过简单的内存分析图，说明这两种方式的区别：<br><img src="http://p0w1t27p0.bkt.clouddn.com/limynl/sit/String_inner_analysis.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""><br>因此从上面可以看出使用方式一，内存为其分配了两个对象，至于常量池中”Hello World”为什么是一个对象，这就要更深层次的分析了，这里就不做过多的解释；而方式二只创建了一个对象。 因此这里就得出了平时的结论：<br>&emsp;&emsp;1、当需要创建String字符串时，推荐使用方式二的形式，因为使用方式一增大堆内存的消耗；<br>&emsp;&emsp;2、它们之间的“==”关系：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class TestString&#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        String str1 = new String(<span class="string">"Hello World"</span>);</span><br><span class="line">        String str2 = <span class="string">"Hello World"</span>;</span><br><span class="line">        System.out.println(str1 == str2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;当然结果为：false，因为str1、str2不是引用的同一个对象。<br>&emsp;&emsp;3、从图中可以看出String的内部通过char[] value进行管理的，因此String的本质是字符数组。</p>
-<h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h3><h4 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public final class String</span><br><span class="line">    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>String被final修饰，说明该类不能被继承；</li>
-<li>实现Serializable，说明可以序列化和反序列化；</li>
-<li>实现Comparable，说明可以进行自定义的字符串比较；</li>
-<li>实现CharSequence，说明利用CharSequence可以实现读写方式。</li>
-</ul>
-<h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><p>源码中可以看见这样一个成员变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//存储字符串中元素的字符数组</span><br><span class="line">private final char value[];</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>该成员变量是一个字符数组表明，String的本质就是一个字符数组，通过这个字符数组来存储字符内容；</li>
-<li>该字符数组被final修饰，而且value是引用变量，因此可以知道一旦被初始化，即指向内存中一个数组，就不能再指向别的数组了；</li>
-<li>看到这里我们就可以得出结论：<strong>String是不可变的！</strong><br><strong>注意：String不可变是指其内容不能被修改，但是其引用还是可以指向其他内容。</strong>   </li>
-</ul>
-<p>&emsp;&emsp;比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s3 = <span class="string">"abc"</span>;</span><br><span class="line">String s4 = <span class="string">"def"</span>;</span><br><span class="line">s3 = s4;</span><br><span class="line">System.out.println(s3);</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;因此输出结果为：def</p>
-<p>&emsp;&emsp;这里拿图说话 ☟：<br><img src="http://p0w1t27p0.bkt.clouddn.com/String_not_change.png?imageView2/0/q/75|watermark/2/text/aHR0cDovL2xpbXlubC5zaXRl/font/5b6u6L2v6ZuF6buR/fontsize/440/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt=""><br>&emsp;&emsp;因此从图可知，s3的原来所引用的对象内容确实没有改变，改变的仅仅是s3引用的对象。   </p>
-<p>&emsp;&emsp;⊙(・◇・)？   思考：s3所引用的对象内容到底可不可改变<br>&emsp;&emsp;&emsp;&emsp;我们都知道对象引用，引用的是对象的地址，它根本就不知道对象的实际内容，因此如果String类中如果提供一个可以修改value字符串数组内容的方法，那么String就变成可修改的了，因此实际上String没有这么一个方法。实际上也不应该提供这么一个方法，否则String类就没有意义了。</p>
-<h4 id="常用方法介绍"><a href="#常用方法介绍" class="headerlink" title="常用方法介绍"></a>常用方法介绍</h4><p>上面详细介绍了String类的特性，下面对其几个常用方法进行简要分析，以此对String类的相关特性进一步了解：</p>
-<h5 id="1、构造方法："><a href="#1、构造方法：" class="headerlink" title="1、构造方法："></a>1、构造方法：</h5><p>&emsp;&emsp;(1)、无参构造函数：会创建一个空的字符序列，因为字符串是不可变的，所以没必要使用。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public <span class="function"><span class="title">String</span></span>() &#123;</span><br><span class="line">    this.value = new char[0];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;(2)、String为参数的构造函数：这个构造方法会产生两个字符串对象，用来初始化一个和输入参数具有相同字符序列的字符串对象，换句话说，新建的这个字符串对象是传入的字符串参数对象的一份副本，除非是明确地需要使用字符串复制功能，否则由于字符串常量值是不可变的，这个构造函数是没有必要使用。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public String(String original) &#123;</span><br><span class="line">    this.value = original.value;</span><br><span class="line">    this.hash = original.hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;(3)、将传入的字符数组复制到一个新的字符数组，并将当前对象的value(即this.value)指向它。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public String(char value[]) &#123;</span><br><span class="line">    this.value = Arrays.copyOf(value, value.length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public String(char value[], int offset, int count) &#123;</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line">    this.value = Arrays.copyOfRange(value, offset, offset+count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;(4)、使用字节数组创建字符串，同时还可以使用指定的解码方式进行解码。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public String(byte bytes[])</span><br><span class="line">public String(byte bytes[], int offset, int length) // 从offset开始，长度为length 并以默认的 ISO-8859-1 编码转换成字符串</span><br><span class="line">public String(byte bytes[], Charset charset)</span><br><span class="line">public String(byte bytes[], String charsetName)</span><br><span class="line">public String(byte bytes[], int offset, int length, Charset charset)</span><br><span class="line">public String(byte bytes[], int offset, int length, String charsetName)</span><br></pre></td></tr></table></figure>
-<h5 id="2、常用方法："><a href="#2、常用方法：" class="headerlink" title="2、常用方法："></a>2、常用方法：</h5><p>&emsp;&emsp;(1)、字符串截取，创建了一个新数组，因此牺牲了一定的空间性能。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public String substring(int beginIndex, int endIndex) &#123;</span><br><span class="line">    <span class="keyword">if</span> (beginIndex &lt; 0) &#123;</span><br><span class="line">        throw new StringIndexOutOfBoundsException(beginIndex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (endIndex &gt; value.length) &#123;</span><br><span class="line">        throw new StringIndexOutOfBoundsException(endIndex);</span><br><span class="line">    &#125;</span><br><span class="line">    int subLen = endIndex - beginIndex;</span><br><span class="line">    <span class="keyword">if</span> (subLen &lt; 0) &#123;</span><br><span class="line">        throw new StringIndexOutOfBoundsException(subLen);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> ((beginIndex == 0) &amp;&amp; (endIndex == value.length)) ? this</span><br><span class="line">            : new String(value, beginIndex, subLen);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;(2)、比较两个字符串，可以看出是比较的一个一个字符内容，因此两个相同字符串内容的String对象比较，都是true<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object anObject) &#123;</span><br><span class="line">    <span class="keyword">if</span> (this == anObject) &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (anObject instanceof String) &#123;</span><br><span class="line">        String anotherString = (String) anObject;</span><br><span class="line">        int n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            char v1[] = value;</span><br><span class="line">            char v2[] = anotherString.value;</span><br><span class="line">            int i = 0;</span><br><span class="line">            <span class="keyword">while</span> (n-- != 0) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])//对两个字符串中的字符一个一个比较</span><br><span class="line">                    <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>String中还有很多其他方法，具体的自己可以去看看源码，基本上都是字符数组的操作~~~</p>
-<h3 id="扩展：到底创建了几个对象？"><a href="#扩展：到底创建了几个对象？" class="headerlink" title="扩展：到底创建了几个对象？"></a>扩展：到底创建了几个对象？</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>常量池：指的是在编译期被确定，并保存在以编译的.class文件中的一些数据。它包括了关于类、方法、接口等中的==常量==，也包括==字符串常量==。</p>
-<h4 id="情形一"><a href="#情形一" class="headerlink" title="情形一"></a>情形一</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"abc"</span>;</span><br><span class="line">String b = <span class="string">"abc"</span>;</span><br></pre></td></tr></table></figure>
-<p>上面总共创建了一个对象，由于执行到第一行时常量池中并不存在”abc”，故需要创建一个对象，执行到第二行时，由于常量池中存在”abc”，故直接共享常量池中的内容，因此不会创建对象。</p>
-<h4 id="情形二"><a href="#情形二" class="headerlink" title="情形二"></a>情形二</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String <span class="built_in">test</span> = <span class="string">"abcdefxyz"</span>;</span><br><span class="line">String s5 = <span class="string">"abc"</span> + <span class="string">"def"</span>;</span><br><span class="line">String s6 = s5 + <span class="string">"xyz"</span>;</span><br><span class="line">System.out.println(<span class="built_in">test</span> == s6);//<span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>上面两句代码各创建了几个对象：<br>&emsp;&emsp;(1)、首先对于String s5 = “abc” + “def”; 一般我们会认为创建了两个对象，即”abc”和”def”，其实不然，由于常量的值在编译时执行“+”就被确定了，因此变量s5在编译时就可以确定为”abcdef”，因此实际上只创建了一个对象，其实这里就是Java中String的一种优化。<br>&emsp;&emsp;(2)、对于String s6 = s5 + “xyz”; 由于s5是一个变量，在编译时它的值并不确定，故并不会实现编译优化，因此就会产生两个对象，即”xyz”和”abcdefxyz”。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String <span class="built_in">test</span> = <span class="string">"aaabbb"</span>;</span><br><span class="line">final String s7 = <span class="string">"aaa"</span>;</span><br><span class="line">final String s8 = <span class="string">"bbb"</span>;</span><br><span class="line">String s9 = s7 + s8;</span><br><span class="line">System.out.println(<span class="built_in">test</span> == s9);//<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;(3)、对于上面的String s9 = s7 + s8; 并不产生对象，因为s7、s8均为常量，所以编译时就能确定，编译时就会将常量替换，等同于是s9 = “aaa”+”bbb”，因此不产生新对象。</p>
-<p>结论：    </p>
-<ul>
-<li>使用“+”连接的两个字符串本身就是字面常量字符串时，如果池中存在这样连接后的字符串，则是不会重新创建对象，而是直接引用池中的字符串对象；</li>
-<li>如果“+”连接的两字符串中只要有一个不是字面常量串（即定义过的），是会产生新的字符串对象。</li>
-</ul>
-<h4 id="情形三"><a href="#情形三" class="headerlink" title="情形三"></a>情形三</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//案例一</span><br><span class="line">String s7 = new String(<span class="string">"abc"</span>);</span><br><span class="line"><span class="keyword">for</span>(int i = 0;i &lt; 100;i++)&#123;</span><br><span class="line">    s7 = s7 + i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//案例二</span><br><span class="line">String s8 = <span class="string">"def"</span>;</span><br><span class="line"><span class="keyword">for</span>(int i =0;i &lt; 100;i++)&#123;</span><br><span class="line">    s8 = s8 + i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;因此从前面我们可以知道案例一情况下，将会产生102个对象；案例二情况下，将会产生101个对象。因此当我们的程序中需要大量的拼接字符串时，应该使用效率更高的StringBuilder。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>从上面可以看出虽然String不可变，但是总有其好处：    </p>
-<ul>
-<li>由于它的不可变特性，当我们传参数时，使用不可变类不需要去考虑谁可能会修改其内部的值，因此相对较安全；</li>
-<li>由于常量池的作用，对个引用变量可以引用同一个字符串实例，避免频繁创建实例的开销。</li>
-</ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>由于文章篇幅较长，因此将分两部分介绍，传送☞  ++深度解析StringBuilder和StringBuffer++</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="熊掌号的意义"><a href="#熊掌号的意义" class="headerlink" title="熊掌号的意义"></a>熊掌号的意义</h2><p>百度熊掌号是内容和服务提供者入驻百度生态的实名账号，致力于帮助内容和服务提供者方便、快捷、高效地连接百度用户，并充分利用搜索生态开放的优势，获得流量和沉淀用户，实现自身价值的快速增长。</p>
+<h2 id="熊掌号的目的："><a href="#熊掌号的目的：" class="headerlink" title="熊掌号的目的："></a>熊掌号的目的：</h2><p>1、建站开发流程繁杂，推广营销成本高；<br>2、互联网平台分散，站长需要同时维护多个平台，各平台的用户不能互通，运营成本较高；<br>3、传统的搜索仅能获取流量，无法有效留存并运营用户；同时将搜索时代由PC向移动转变，从站长角度发展搜索生态。</p>
+<h2 id="熊掌号的作用："><a href="#熊掌号的作用：" class="headerlink" title="熊掌号的作用："></a>熊掌号的作用：</h2><h3 id="1、为资源方带来的收益："><a href="#1、为资源方带来的收益：" class="headerlink" title="1、为资源方带来的收益："></a>1、为资源方带来的收益：</h3><h4 id="①、品牌赋能："><a href="#①、品牌赋能：" class="headerlink" title="①、品牌赋能："></a>①、品牌赋能：</h4><p>资源方可以将优质内容及服务全部提交到熊掌号，统一用户端品牌认知。同时，在搜索引擎上的各个地方，熊掌号的主页、搜索结果页、第三方落地页都强调合作方品牌。熊掌号支持将官网、百家号、官方APP、官方微博等全部内容和服务链接到熊掌号，有利于用户对品牌认知的统一。例如展示内容提供者的名称、Logo等。</p>
+<h4 id="②、流量赋能："><a href="#②、流量赋能：" class="headerlink" title="②、流量赋能："></a>②、流量赋能：</h4><p>通过熊掌号，百度启动了全新的搜索资源索引、排序机制和全新的阿拉丁开放机制，这种新的流量分发机制，使内容资源更加开放。例如，为用户推荐相关的其他内容，引导用户。</p>
+<h4 id="③、运营赋能："><a href="#③、运营赋能：" class="headerlink" title="③、运营赋能："></a>③、运营赋能：</h4><p>从用户沉淀到粉丝积累、再到营销变现，熊掌号将形成完整的闭环生态，为内容和服务提供者带来更多种的粉丝互动手段和更多元的营销推广模式。例如，关注熊掌号，与内容提供者进行发送消息、互动等。</p>
+<h4 id="④、技术赋能："><a href="#④、技术赋能：" class="headerlink" title="④、技术赋能："></a>④、技术赋能：</h4><p>基于熊掌号，百度将开放能力给资源方，帮助资源方提升自身服务转化率。如账号登录、支付能力、运营能力、端能力、AI能力等。</p>
+<h3 id="2、为搜索用户带来的收益："><a href="#2、为搜索用户带来的收益：" class="headerlink" title="2、为搜索用户带来的收益："></a>2、为搜索用户带来的收益：</h3><p>①、用户在百度获得的内容将更加丰富多彩；<br>②、多种方式保证用户权益不受侵害；<br>③、满足了用户对优质资源内容、服务的持续性需求。</p>
+<h2 id="熊掌号的发展："><a href="#熊掌号的发展：" class="headerlink" title="熊掌号的发展："></a>熊掌号的发展：</h2><p>百度通过熊掌号将用户和资源提供者进行结合，使用户和账号运营者之间产生关联进而实现营销的目的，帮助内容和服务提供者获得更多的流量和用户，改变整个搜索生态的模式，相信百度在这条路上会越走越远。用科技让复杂的世界变得更简单，这是百度的新愿景，相信熊掌号必将开启搜索新时代。</p>
 
       
     </div>
@@ -529,7 +474,7 @@
 	<img src="http://p1syj1ah9.bkt.clouddn.com/limynl/site/post_end.gif"><br />
 
 	<span style="line-height:50px">作者：<a href="http://limynl.site">Limynl</a></span><br />
-	<span style="line-height:50px">出处：<a href="http://limynl.site/2017/12/24/string-detail-introduce/" title="String之间的那点儿事">http://limynl.site/2017/12/24/string-detail-introduce/</a></span><br />
+	<span style="line-height:50px">出处：<a href="http://limynl.site/2018/05/22/xiongzhanghao/" title="xiongzhanghao">http://limynl.site/2018/05/22/xiongzhanghao/</a></span><br />
 	<span style="line-height:50px">分享是快乐的，也见证了个人成长历程，文章大多都是平时学习的总结，基于自身认知不足，错误在所难免，也请大家指正，共同交流学习。</span><br />
 	<span style="line-height:50px">本文版权归作者所有，转载请注明出处，如有问题，请邮件(<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5YmMiJyLiaWUlMuGiog" style="text-decoration:none;">limynl@qq.com</a>)咨询。</span>
 </div>
@@ -544,7 +489,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://limynl.site/2017/12/24/string-detail-introduce/" title="String之间的那点儿事">http://limynl.site/2017/12/24/string-detail-introduce/</a>
+    <a href="http://limynl.site/2018/05/22/xiongzhanghao/" title="xiongzhanghao">http://limynl.site/2018/05/22/xiongzhanghao/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -564,9 +509,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Github/" rel="tag"># Github</a>
           
-            <a href="/tags/源码/" rel="tag"># 源码</a>
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
         </div>
       
@@ -579,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/15/design-pattern-singleton/" rel="next" title="设计模式(二)之单例模式">
-                <i class="fa fa-chevron-left"></i> 设计模式(二)之单例模式
+              <a href="/2018/04/03/common-sorting-summary/" rel="next" title="常见排序算法总结">
+                <i class="fa fa-chevron-left"></i> 常见排序算法总结
               </a>
             
           </div>
@@ -588,10 +533,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/26/design-pattern-factory/" rel="prev" title="设计模式(三)之工厂模式">
-                设计模式(三)之工厂模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三者关系"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E09;&#x8005;&#x5173;&#x7CFB;" class="headerlink" title="&#x4E09;&#x8005;&#x5173;&#x7CFB;"></a>&#x4E09;&#x8005;&#x5173;&#x7CFB;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String详解"><span class="nav-number">3.</span> <span class="nav-text"><a href="#String&#x8BE6;&#x89E3;" class="headerlink" title="String&#x8BE6;&#x89E3;"></a>String&#x8BE6;&#x89E3;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见创建方式"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x5E38;&#x89C1;&#x521B;&#x5EFA;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5E38;&#x89C1;&#x521B;&#x5EFA;&#x65B9;&#x5F0F;"></a>&#x5E38;&#x89C1;&#x521B;&#x5EFA;&#x65B9;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码解析"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x6E90;&#x7801;&#x89E3;&#x6790;" class="headerlink" title="&#x6E90;&#x7801;&#x89E3;&#x6790;"></a>&#x6E90;&#x7801;&#x89E3;&#x6790;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类定义"><span class="nav-number">3.2.1.</span> <span class="nav-text"><a href="#&#x7C7B;&#x5B9A;&#x4E49;" class="headerlink" title="&#x7C7B;&#x5B9A;&#x4E49;"></a>&#x7C7B;&#x5B9A;&#x4E49;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#成员变量"><span class="nav-number">3.2.2.</span> <span class="nav-text"><a href="#&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用方法介绍"><span class="nav-number">3.2.3.</span> <span class="nav-text"><a href="#&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#x4ECB;&#x7ECD;" class="headerlink" title="&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#x4ECB;&#x7ECD;"></a>&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#x4ECB;&#x7ECD;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、构造方法："><span class="nav-number">3.2.3.1.</span> <span class="nav-text"><a href="#1&#x3001;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="1&#x3001;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;"></a>1&#x3001;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、常用方法："><span class="nav-number">3.2.3.2.</span> <span class="nav-text"><a href="#2&#x3001;&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="2&#x3001;&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;"></a>2&#x3001;&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展：到底创建了几个对象？"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x6269;&#x5C55;&#xFF1A;&#x5230;&#x5E95;&#x521B;&#x5EFA;&#x4E86;&#x51E0;&#x4E2A;&#x5BF9;&#x8C61;&#xFF1F;" class="headerlink" title="&#x6269;&#x5C55;&#xFF1A;&#x5230;&#x5E95;&#x521B;&#x5EFA;&#x4E86;&#x51E0;&#x4E2A;&#x5BF9;&#x8C61;&#xFF1F;"></a>&#x6269;&#x5C55;&#xFF1A;&#x5230;&#x5E95;&#x521B;&#x5EFA;&#x4E86;&#x51E0;&#x4E2A;&#x5BF9;&#x8C61;&#xFF1F;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">3.3.1.</span> <span class="nav-text"><a href="#&#x6982;&#x5FF5;" class="headerlink" title="&#x6982;&#x5FF5;"></a>&#x6982;&#x5FF5;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#情形一"><span class="nav-number">3.3.2.</span> <span class="nav-text"><a href="#&#x60C5;&#x5F62;&#x4E00;" class="headerlink" title="&#x60C5;&#x5F62;&#x4E00;"></a>&#x60C5;&#x5F62;&#x4E00;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#情形二"><span class="nav-number">3.3.3.</span> <span class="nav-text"><a href="#&#x60C5;&#x5F62;&#x4E8C;" class="headerlink" title="&#x60C5;&#x5F62;&#x4E8C;"></a>&#x60C5;&#x5F62;&#x4E8C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#情形三"><span class="nav-number">3.3.4.</span> <span class="nav-text"><a href="#&#x60C5;&#x5F62;&#x4E09;" class="headerlink" title="&#x60C5;&#x5F62;&#x4E09;"></a>&#x60C5;&#x5F62;&#x4E09;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#&#x4F18;&#x70B9;" class="headerlink" title="&#x4F18;&#x70B9;"></a>&#x4F18;&#x70B9;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x7ED3;&#x8BED;" class="headerlink" title="&#x7ED3;&#x8BED;"></a>&#x7ED3;&#x8BED;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熊掌号的意义"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x718A;&#x638C;&#x53F7;&#x7684;&#x610F;&#x4E49;" class="headerlink" title="&#x718A;&#x638C;&#x53F7;&#x7684;&#x610F;&#x4E49;"></a>&#x718A;&#x638C;&#x53F7;&#x7684;&#x610F;&#x4E49;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熊掌号的目的："><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x718A;&#x638C;&#x53F7;&#x7684;&#x76EE;&#x7684;&#xFF1A;" class="headerlink" title="&#x718A;&#x638C;&#x53F7;&#x7684;&#x76EE;&#x7684;&#xFF1A;"></a>&#x718A;&#x638C;&#x53F7;&#x7684;&#x76EE;&#x7684;&#xFF1A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熊掌号的作用："><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x718A;&#x638C;&#x53F7;&#x7684;&#x4F5C;&#x7528;&#xFF1A;" class="headerlink" title="&#x718A;&#x638C;&#x53F7;&#x7684;&#x4F5C;&#x7528;&#xFF1A;"></a>&#x718A;&#x638C;&#x53F7;&#x7684;&#x4F5C;&#x7528;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、为资源方带来的收益："><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#1&#x3001;&#x4E3A;&#x8D44;&#x6E90;&#x65B9;&#x5E26;&#x6765;&#x7684;&#x6536;&#x76CA;&#xFF1A;" class="headerlink" title="1&#x3001;&#x4E3A;&#x8D44;&#x6E90;&#x65B9;&#x5E26;&#x6765;&#x7684;&#x6536;&#x76CA;&#xFF1A;"></a>1&#x3001;&#x4E3A;&#x8D44;&#x6E90;&#x65B9;&#x5E26;&#x6765;&#x7684;&#x6536;&#x76CA;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①、品牌赋能："><span class="nav-number">3.1.1.</span> <span class="nav-text"><a href="#&#x2460;&#x3001;&#x54C1;&#x724C;&#x8D4B;&#x80FD;&#xFF1A;" class="headerlink" title="&#x2460;&#x3001;&#x54C1;&#x724C;&#x8D4B;&#x80FD;&#xFF1A;"></a>&#x2460;&#x3001;&#x54C1;&#x724C;&#x8D4B;&#x80FD;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②、流量赋能："><span class="nav-number">3.1.2.</span> <span class="nav-text"><a href="#&#x2461;&#x3001;&#x6D41;&#x91CF;&#x8D4B;&#x80FD;&#xFF1A;" class="headerlink" title="&#x2461;&#x3001;&#x6D41;&#x91CF;&#x8D4B;&#x80FD;&#xFF1A;"></a>&#x2461;&#x3001;&#x6D41;&#x91CF;&#x8D4B;&#x80FD;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③、运营赋能："><span class="nav-number">3.1.3.</span> <span class="nav-text"><a href="#&#x2462;&#x3001;&#x8FD0;&#x8425;&#x8D4B;&#x80FD;&#xFF1A;" class="headerlink" title="&#x2462;&#x3001;&#x8FD0;&#x8425;&#x8D4B;&#x80FD;&#xFF1A;"></a>&#x2462;&#x3001;&#x8FD0;&#x8425;&#x8D4B;&#x80FD;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#④、技术赋能："><span class="nav-number">3.1.4.</span> <span class="nav-text"><a href="#&#x2463;&#x3001;&#x6280;&#x672F;&#x8D4B;&#x80FD;&#xFF1A;" class="headerlink" title="&#x2463;&#x3001;&#x6280;&#x672F;&#x8D4B;&#x80FD;&#xFF1A;"></a>&#x2463;&#x3001;&#x6280;&#x672F;&#x8D4B;&#x80FD;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、为搜索用户带来的收益："><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#2&#x3001;&#x4E3A;&#x641C;&#x7D22;&#x7528;&#x6237;&#x5E26;&#x6765;&#x7684;&#x6536;&#x76CA;&#xFF1A;" class="headerlink" title="2&#x3001;&#x4E3A;&#x641C;&#x7D22;&#x7528;&#x6237;&#x5E26;&#x6765;&#x7684;&#x6536;&#x76CA;&#xFF1A;"></a>2&#x3001;&#x4E3A;&#x641C;&#x7D22;&#x7528;&#x6237;&#x5E26;&#x6765;&#x7684;&#x6536;&#x76CA;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熊掌号的发展："><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x718A;&#x638C;&#x53F7;&#x7684;&#x53D1;&#x5C55;&#xFF1A;" class="headerlink" title="&#x718A;&#x638C;&#x53F7;&#x7684;&#x53D1;&#x5C55;&#xFF1A;"></a>&#x718A;&#x638C;&#x53F7;&#x7684;&#x53D1;&#x5C55;&#xFF1A;</span></a></li></ol></div>
             
 
           </div>
